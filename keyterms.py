@@ -14,7 +14,7 @@ headlines = []
 lemmatizer = WordNetLemmatizer()
 stop_words = stopwords.words('english') + list(string.punctuation)
 vectorizer = TfidfVectorizer()
-vocabulary = ["", "", "", "", "", "", "", "", "", ""]
+vocabulary = []
 i = 0
 list_to_print = []
 for news in root[0]:
@@ -27,7 +27,7 @@ for news in root[0]:
             if nltk.pos_tag([word])[0][1] == 'NN':
                 counts.update([word])
                 text += word + " "
-    vocabulary[i] = text
+    vocabulary.append(text)
     i += 1
     counts_sorted = sorted(counts.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)
 tfidf_matrix = vectorizer.fit_transform(vocabulary)
